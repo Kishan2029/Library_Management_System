@@ -1,9 +1,20 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['email'])) {
+?>
+    <script type="text/javascript">
+        alert("You are not Logged-in ")
+        window.location.href = "../index.php";
+    </script>
+<?php
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 
 
@@ -22,6 +33,13 @@ session_start();
             width: 300px;
             height: 450 px;
         }
+
+        body {
+            background-image: url("./images/testing3.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #cccccc;
+        }
     </style>
 </head>
 
@@ -30,6 +48,7 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <div class="navbar-header">
+                <img src="./images/abc1.jpeg" width="100" height="60"> &nbsp &nbsp
                 <a class="navbar-brand" href="admin_dashboard.php">Library Management System(LMS)</a>
             </div>
             <font style="color: white">
@@ -52,13 +71,19 @@ session_start();
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="view_profile.php">
+                            <img src="./images/view.png" width="30" height="30">
                             View Profile
+
                         </a>
                         <a class="dropdown-item" href="edit_profile.php">
+                            <img src="./images/edit.png" width="30" height="30">
                             Edit Profile
+
                         </a>
                         <a class="dropdown-item" href="change_password.php">
+                            <img src="./images/cpass.png" width="30" height="30">
                             Change Password
+
                         </a>
                     </div>
                 </li>
@@ -68,20 +93,18 @@ session_start();
             </ul>
         </div>
     </nav><br>
-
-    <span>
-        <marquee> This is Library Management System. </marquee>
-    </span><br>
+    <br>
+    <?php include '../header.php'; ?><br><br>
     <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <form action="update_password.php" method="post">
+        <div class="col-md-4" style="background-color: rgb(197, 56, 51); padding: 30px">
+            <form action=" update_password.php" method="post">
                 <div class="form-group">
-                    <label>Enter Current Password:</label>
+                    <b><label>Enter Current Password:</label></b><br><br>
                     <input type="password" name="old_password" class="form-control" required>
                 </div><br>
                 <div class="form-group">
-                    <label>Enter New Password:</label>
+                    <b> <label>Enter New Password:</label></b><br><br>
                     <input type="password" name="new_password" class="form-control" required>
                 </div><br>
                 <button type="submit" name="update" class="btn btn-primary">Update Password</button>

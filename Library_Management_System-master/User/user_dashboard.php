@@ -1,20 +1,28 @@
 <?php
-session_start();
-function get_user_issue_book_count()
-{
 
-    $connection = mysqli_connect("localhost", "root", "");
-    $db = mysqli_select_db($connection, "lms");
-    $user_issue_book_count = 0;
-    $query = "select count(*) as user_issue_book_count from issued_books where student_id = $_SESSION[id]";
-    $query_run = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_assoc($query_run)) {
-        $user_issue_book_count  = $row['user_issue_book_count'];
-    }
-    return($user_issue_book_count);
-}
+session_start();
+
+
+if (!isset($_SESSION['email'])) {
 ?>
-<!DOCTYPE html>
+    <script type="text/javascript">
+        alert("You are not Logged-in ")
+        window.location.href = "../index.php";
+    </script>
+<?php
+}
+
+$connection = mysqli_connect("localhost", "root", "");
+$db = mysqli_select_db($connection, "lms");
+$book_name = "";
+$author = "";
+$book_no = "";
+$query = "select book_name,book_author,book_no from issued_books where student_id = $_SESSION[id] and status= 1;";
+
+
+?>
+
+<!DOCTYPE htm>
 
 <html>
 
@@ -30,11 +38,23 @@ function get_user_issue_book_count()
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style type="text/css">
-        #side_bar {
-            background-color: whitesmoke;
-            padding: 50px;
-            width: 300px;
-            height: 450 px;
+        body {
+            background-image: url("./images/xyz3.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #cccccc;
+        }
+
+        table {
+            width: 100%;
+            border: #000000;
+            background-color: white;
+        }
+
+        .col-md-8 {
+            overflow-x: auto;
+            height: 400px;
+
         }
     </style>
 </head>
@@ -44,7 +64,8 @@ function get_user_issue_book_count()
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="user_dashboard.php">Library Management System(LMS)</a>
+                <img src="./images/abc1.jpeg" width="100" height="60"> &nbsp &nbsp
+                <a class="navbar-brand" href="./user_dashboard.php">Library Management System(LMS)</a>
             </div>
             <font style="color: white">
                 <span>
@@ -65,14 +86,20 @@ function get_user_issue_book_count()
                         My Profile
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="view_profile.php">
+                        <a class="dropdown-item" href="./view_profile.php">
+                            <img src="./images/view.png" width="30" height="30">
                             View Profile
+
                         </a>
-                        <a class="dropdown-item" href="edit_profile.php">
+                        <a class="dropdown-item" href="./edit_profile.php">
+                            <img src="./images/edit.png" width="30" height="30">
                             Edit Profile
+
                         </a>
-                        <a class="dropdown-item" href="change_password.php">
+                        <a class="dropdown-item" href="./change_password.php">
+                            <img src="./images/cpass.png" width="30" height="30">
                             Change Password
+
                         </a>
                     </div>
                 </li>
@@ -81,27 +108,47 @@ function get_user_issue_book_count()
                     </a></li>
             </ul>
         </div>
-    </nav><br>
+    </nav>
 
-    <span>
-        <marquee> This is Library Management System. </marquee>
-    </span><br>
+
+
+    <br>
+    <?php include '../header.php'; ?>
+    <br><br>
     <div class="row">
-        <div class="col-md-3">
-            <div class="card bg-light" style="width: 300px;">
-                <div class="card-header">Issued Books: </div>
-                <div class="card-body">
-                    <p class="card-text">Total no. of Issued Books: <?php echo get_user_issue_book_count(); ?>  </p>
-                    <a href="view_issued_book.php" class="btn btn-danger" target="_blank">View Issued Book</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="col-md-3">
-                <div class="col-md-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form>
+                <table class="table-bordered" width="900px" style="text-align:center">
+                    <tr>
+                        <th>Book Name:</th>
+                        <th>Book Author:</th>
+                        <th>Book Number:</th>
 
-                </div>
-            </div>
+                    </tr>
+                    <?php
+                    $query_run = mysqli_query($connection, $query);
+                    while ($row = mysqli_fetch_assoc($query_run)) {
+                        $book_name = $row['book_name'];
+                        $author = $row['book_author'];
+                        $book_no = $row['book_no'];
+
+                    ?>
+                        <tr>
+                            <td><?php echo $book_name; ?></td>
+                            <td><?php echo $author; ?></td>
+                            <td><?php echo $book_no; ?></td>
+
+
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </table>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
 
 

@@ -5,6 +5,8 @@
 <head>
 
 
+
+
     <meta charset="utf-8" name="viewport" content="width=device-width,intial-scale=1">
     <link rel="stylesheet" type="text/css" href="bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css">
     <!-- <script type="text/javascript" src="bootstrap-5.0.0-beta2-dist/js/bootstrap.min.js"></script> -->
@@ -15,6 +17,13 @@
             width: 300px;
             height: 450 px;
         }
+
+        body {
+            background-image: url("./images/lib.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #cccccc;
+        }
     </style>
 </head>
 
@@ -23,6 +32,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <div class="navbar-header">
+                <img src="./images/abc1.jpeg" width="100" height="60"> &nbsp &nbsp
                 <a class="navbar-brand" href="index.php">Library Management System(LMS)</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
@@ -32,16 +42,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./User/user_login.php">User Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="signup.php">Register</a>
-                </li>
+
             </ul>
         </div>
     </nav><br>
 
-    <span>
-        <marquee> This is Library Management System. </marquee>
-    </span><br>
+
+
+    <?php include 'header.php'; ?>
 
     <div class="row">
 

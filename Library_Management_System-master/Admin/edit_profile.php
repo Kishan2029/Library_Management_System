@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['email'])) {
+?>
+    <script type="text/javascript">
+        alert("You are not Logged-in ")
+        window.location.href = "../index.php";
+    </script>
+<?php
+}
+
 $connection = mysqli_connect("localhost", "root", "");
 $db = mysqli_select_db($connection, "lms");
 $name = "";
@@ -12,12 +22,12 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     $name = $row['name'];
     $email = $row['email'];
     $mobile = $row['mobile'];
-    
 }
 
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 
 
@@ -36,14 +46,23 @@ while ($row = mysqli_fetch_assoc($query_run)) {
             width: 300px;
             height: 450 px;
         }
+
+        body {
+            background-image: url("./images/testing3.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #cccccc;
+        }
     </style>
 </head>
 
 <body>
 
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <div class="navbar-header">
+                <img src="./images/abc1.jpeg" width="100" height="60"> &nbsp &nbsp
                 <a class="navbar-brand" href="admin_dashboard.php">Library Management System(LMS)</a>
             </div>
             <font style="color: white">
@@ -66,13 +85,19 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="view_profile.php">
+                            <img src="./images/view.png" width="30" height="30">
                             View Profile
+
                         </a>
                         <a class="dropdown-item" href="edit_profile.php">
+                            <img src="./images/edit.png" width="30" height="30">
                             Edit Profile
+
                         </a>
                         <a class="dropdown-item" href="change_password.php">
+                            <img src="./images/cpass.png" width="30" height="30">
                             Change Password
+
                         </a>
                     </div>
                 </li>
@@ -82,27 +107,25 @@ while ($row = mysqli_fetch_assoc($query_run)) {
             </ul>
         </div>
     </nav><br>
-
-    <span>
-        <marquee> This is Library Management System. </marquee>
-    </span><br>
+    <br>
+    <?php include '../header.php'; ?><br><br>
     <div class="row">
         <div class="col-md-4"> </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="background-color: rgb(197, 56, 51); padding: 30px">
             <form action="update_profile.php" method="post">
                 <div class="form-group">
-                    <label>Name:</label>
-                    <input type="text" class="form-control" value="<?php echo $name; ?>" name="name">
+                    <b> <label>Name:</label></b><br><br>
+                    <input type="text" class="form-control" value="<?php echo $name; ?>" name="name"><br>
                 </div>
                 <div class="form-group">
-                    <label>Email:</label>
-                    <input type="text" class="form-control" value="<?php echo $email; ?>" name="email" disabled>
+                    <b><label>Email:</label></b><br><br>
+                    <input type="text" class="form-control" value="<?php echo $email; ?>" name="email" disabled><br>
                 </div>
                 <div class="form-group">
-                    <label>Mobile:</label>
+                    <b><label>Mobile:</label></b><br><br>
                     <input type="text" class="form-control" value="<?php echo $mobile; ?>" name="mobile">
                 </div>
-                
+
                 <br>
                 <button type="submit" name="update" class="btn btn-primary">Update</button>
             </form>
