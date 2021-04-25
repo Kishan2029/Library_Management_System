@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2021 at 03:21 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Apr 24, 2021 at 07:44 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,7 +62,20 @@ INSERT INTO `authors` (`author_id`, `author_name`) VALUES
 (102, 'Chetan Bhagat'),
 (103, 'Robin Sharma'),
 (107, 'J.K Rowling'),
-(108, 'Amish Tripathi1');
+(108, 'Amish Tripathi1'),
+(109, 'William Shakespeare'),
+(110, 'Agatha Christie'),
+(111, 'Paul Coleho'),
+(112, 'Virginia Woolf'),
+(113, 'R D Sharma'),
+(114, 'H C Varma'),
+(115, 'Stan Lee'),
+(116, 'Peter Lynch'),
+(117, 'Charles Dickens'),
+(118, 'Stephen Covey'),
+(119, 'Douglas Adams'),
+(120, 'Robert L Piccioni'),
+(121, 'Stephen Hawking');
 
 -- --------------------------------------------------------
 
@@ -87,9 +100,39 @@ INSERT INTO `books` (`book_id`, `book_name`, `author_id`, `cat_id`, `book_no`, `
 (2, 'Data structure', 107, 4, 4518, 300),
 (39, 'You Can WIn', 102, 5, 123, 200),
 (40, 'Harry Potter', 107, 2, 1333, 2000),
-(42, 'Mind power', 103, 2, 1010, 500),
 (43, 'Software engineering', 101, 4, 2025, 500),
-(45, 'hello java', 102, 2, 14441, 230);
+(46, 'To The Lighthouse', 112, 2, 5005, 320),
+(47, 'Macbeth', 109, 15, 5010, 300),
+(48, 'Mathematics for class tenth', 113, 13, 3000, 560),
+(49, 'Mathematics for class eleventh', 113, 13, 3005, 500),
+(50, 'Concept of Physics', 114, 13, 3010, 555),
+(51, 'The hound of Death', 110, 15, 6000, 410),
+(52, 'Two States', 102, 2, 6005, 450),
+(53, 'The Alchemist', 111, 5, 7000, 300),
+(54, 'the monk who sold his ferrari', 103, 4, 7005, 500),
+(55, 'The Greatness Guide', 103, 4, 7015, 230),
+(56, 'Eleven minutes', 111, 14, 7020, 225),
+(57, 'Sita', 108, 2, 7025, 335),
+(58, 'The Meluha', 108, 2, 7030, 200),
+(59, 'Learn to Earn', 116, 16, 8000, 200),
+(60, 'One Up On Wall Streat', 116, 16, 8010, 225),
+(61, 'Beating The Street', 116, 16, 8015, 320),
+(62, 'Aleph', 111, 2, 8020, 330),
+(63, 'A Mysterious Life', 110, 12, 8025, 420),
+(64, 'Midwinter Murder Fireside Tales from the Queen of mystery', 110, 15, 8030, 300),
+(65, 'The Patriotic Murders', 110, 15, 8035, 200),
+(66, 'Oliver Twist', 117, 2, 8040, 300),
+(67, 'Spiderman Miles Moralisa', 115, 14, 9000, 700),
+(68, 'Ironman', 115, 14, 9005, 300),
+(69, 'Hard Times', 117, 10, 9010, 320),
+(70, 'Einstein For Everyonebooks', 120, 17, 10000, 450),
+(71, 'Life Universe and Everything', 119, 17, 10005, 600),
+(72, 'The Theory Of Everything books', 121, 17, 10010, 560),
+(73, 'George and the Blue Moon', 121, 17, 10015, 700),
+(74, 'Seven Habits of Highly Effective People', 118, 10, 10020, 770),
+(75, 'First Things First', 118, 10, 10025, 450),
+(76, 'Hitchhiker guide to the galaxy', 119, 2, 3020, 400),
+(78, 'The Eights Habit', 118, 4, 6020, 460);
 
 -- --------------------------------------------------------
 
@@ -111,7 +154,12 @@ INSERT INTO `category` (`cat_id`, `cat_name`) VALUES
 (4, 'Motivational'),
 (5, 'Story'),
 (10, 'Self-Help'),
-(11, 'Psychology');
+(12, 'Psychology'),
+(13, 'Education'),
+(14, 'Comics'),
+(15, 'Horror'),
+(16, 'Finance'),
+(17, 'Science Fiction');
 
 -- --------------------------------------------------------
 
@@ -128,6 +176,32 @@ CREATE TABLE `issued_books` (
   `status` int(11) NOT NULL,
   `issue_date` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `issued_books`
+--
+
+INSERT INTO `issued_books` (`s_no`, `book_no`, `book_name`, `book_author`, `student_id`, `status`, `issue_date`) VALUES
+(52, 3000, 'Mathematics for class tenth', 'R D Sharma', 28, 1, '2121-04-24'),
+(53, 1333, 'Harry Potter', 'J.K Rowling', 28, 1, '2121-04-24'),
+(54, 6005, 'Two States', 'Chetan Bhagat', 28, 1, '2121-04-24'),
+(55, 7025, 'Sita', 'Amish Tripathi1', 28, 1, '2121-04-24'),
+(56, 8000, 'Learn to Earn', 'Peter Lynch', 28, 1, '2121-04-24'),
+(57, 5010, 'Macbeth', 'William Shakespeare', 11, 1, '2121-04-24'),
+(58, 5005, 'To The Lighthouse', 'Virginia Woolf', 11, 1, '2121-04-25'),
+(59, 3010, 'Concept of Physics', 'H C Varma', 11, 1, '2121-04-25'),
+(60, 7000, 'The Alchemist', 'Paul Coleho', 11, 1, '2121-04-25'),
+(62, 7030, 'The Meluha', 'Amish Tripathi1', 29, 1, '2121-04-25'),
+(66, 9000, 'Spiderman Miles Moralisa', 'Stan Lee', 29, 1, '2121-04-25'),
+(67, 10000, 'Einstein For Everyonebooks', 'Stephen Hawking', 30, 1, '2121-04-26'),
+(68, 6020, 'The Eights Habit', 'Stephen Covey', 30, 1, '2121-04-26'),
+(69, 10015, 'George and the Blue Moon', 'Stephen Hawking', 30, 1, '2121-04-26'),
+(70, 9010, 'Hard Times', 'Charles Dickens', 30, 1, '2121-04-26'),
+(71, 8010, 'One Up On Wall Streat', 'Peter Lynch', 30, 1, '2121-04-26'),
+(72, 9005, 'Ironman', 'Stan Lee', 31, 1, '2121-04-26'),
+(73, 8040, 'Oliver Twist', 'Charles Dickens', 31, 1, '2121-04-26'),
+(74, 7020, 'Eleven minutes', 'Paul Coleho', 32, 1, '2121-04-26'),
+(75, 7015, 'The Greatness Guide', 'Robin Sharma', 33, 1, '2121-04-26');
 
 -- --------------------------------------------------------
 
@@ -164,7 +238,36 @@ INSERT INTO `returnbook` (`book_id`, `book_no`, `status`, `date`) VALUES
 (25, 1333, 1, '2121-03-31'),
 (26, 1010, 0, '2121-04-10'),
 (27, 123, 0, '2121-04-10'),
-(28, 1333, 0, '2121-04-10');
+(28, 1333, 0, '2121-04-10'),
+(29, 999, 1, '2121-04-14'),
+(30, 3000, 1, '2121-04-24'),
+(31, 1333, 1, '2121-04-24'),
+(32, 6005, 1, '2121-04-24'),
+(33, 7025, 1, '2121-04-24'),
+(34, 8000, 1, '2121-04-24'),
+(35, 5010, 1, '2121-04-24'),
+(36, 5005, 1, '2121-04-25'),
+(37, 3010, 1, '2121-04-25'),
+(38, 7000, 1, '2121-04-25'),
+(39, 8015, 1, '2121-04-25'),
+(40, 7030, 1, '2121-04-25'),
+(41, 8025, 1, '2121-04-25'),
+(42, 6000, 1, '2121-04-25'),
+(43, 7005, 1, '2121-04-25'),
+(44, 9000, 1, '2121-04-25'),
+(45, 10000, 1, '2121-04-26'),
+(46, 6020, 1, '2121-04-26'),
+(47, 10015, 1, '2121-04-26'),
+(48, 9010, 1, '2121-04-26'),
+(49, 8010, 1, '2121-04-26'),
+(50, 9005, 1, '2121-04-26'),
+(51, 8040, 1, '2121-04-26'),
+(52, 7020, 1, '2121-04-26'),
+(53, 7015, 1, '2121-04-26'),
+(54, 6000, 0, '2121-04-27'),
+(55, 7005, 0, '2121-04-27'),
+(56, 8025, 0, '2121-04-27'),
+(57, 8015, 0, '2121-04-27');
 
 -- --------------------------------------------------------
 
@@ -188,7 +291,13 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `mobile`, `address`) VALUES
 (4, 'user', 'user1@gmail.com', 'user@1234', 2147483644, 'XYZ Coloney, PQR Nagar , Jaipur'),
 (11, 'rohan', 'rohan@gmail.com', '12345', 123456789, 'Kota, Jaipur'),
-(12, 'Kevin feige', 'kevinfiege@gmail.com', 'Kevin1234', 2147483647, 'Marvel');
+(27, 'Rahul', 'rahul@gmail.com', 'Rahul@1234', 2147483647, 'Plot no-1244/1, Sector-3 A, Gandhinagar, Gujarat-382006'),
+(28, 'Riya Revdiwala', '18bce197@nirmauni.ac.in', 'Riya1234!@#', 2147483647, 'Oman'),
+(29, 'Kishan Prajapati', '18bce181@nirmauni.ac.in', 'Kishan123@@@', 2147483647, 'Plot no-1244/1, Sector-3 A, Gandhinagar, Gujarat-382006'),
+(30, 'Pradumna', '18bce179@nirmauni.ac.in', 'Pradumna123#', 2147483647, 'Surat'),
+(31, 'Meet Mavani', '18bce118@nirmauni.ac.in', 'Meet1234$$', 2147483647, 'Bhavnagar'),
+(32, 'Neha', 'Neha@gmail.com', 'Neha1234@#', 2147483647, 'Plot no-561/1, Sector-13 A, Gandhinagar, Gujarat-382006'),
+(33, 'Paridhi Sharma', 'Pari@gmail.com', 'Pari1234@@', 1234567899, 'UK');
 
 --
 -- Indexes for dumped tables
@@ -258,37 +367,37 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `issued_books`
 --
 ALTER TABLE `issued_books`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `returnbook`
 --
 ALTER TABLE `returnbook`
-  MODIFY `book_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `book_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
